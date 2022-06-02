@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/YMLSreekanth/PackageA.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "1ffd6ed6984d4375ba549d594060718d01751892"
+        "revision" : "0401f76ae20921d64ce8b874beb665835b4c4ae7",
+        "version" : "0.0.3"
       }
     }
   ],
