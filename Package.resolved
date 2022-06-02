@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "packagea",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/YMLSreekanth/PackageA.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c95930546556808faed159a3f68aae829aedd8af"
+      }
+    }
+  ],
+  "version" : 2
+}
