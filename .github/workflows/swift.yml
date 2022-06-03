@@ -1,0 +1,14 @@
+name: Dispatch to Demo Package
+on: push
+
+jobs:
+  build:
+    name: Dispatch to Demo Package
+    runs-on: macos-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          repository: YMLSreekanth/DemoPackage
+          event-type: on_design_system_update
