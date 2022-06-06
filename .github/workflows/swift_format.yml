@@ -22,17 +22,16 @@ jobs:
   
       - name: Identify file changes
         run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            # There are changes. Stage the file, commit and push
-            git add .
-            git commit -m "Swift Formatted"
-            uses: ad-m/github-push-action@master
-            with:
-              branch: ${{ github.ref }}
-          else
-            echo "no changes";
-          fi      
- 
+          if [ -n "$(git status --porcelain)" ]
+          steps: 
+            - name: Commit files
+              run: |
+                git commit -m "Add changes" -a
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                branch: ${{ github.ref }}
+           
  
  
  
