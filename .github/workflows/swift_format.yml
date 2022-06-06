@@ -19,7 +19,17 @@ jobs:
       - name: Push changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-          echo "there are changes"
+            # There are changes. Stage the file, commit and push
+            git add .
+            git commit -m "Swift Formatted"
+            git push      
           else
-          echo "no changes"
-          fi
+            echo "no changes";
+          fi      
+ 
+ 
+ 
+ 
+ 
+ 
+ 
