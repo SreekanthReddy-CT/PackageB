@@ -22,7 +22,7 @@ jobs:
   
       - name: Identify file changes
         run: |
-          if [ -n "$(git status --porcelain)" ]
+          if [ -n "$(git status --porcelain)" ]; then
           steps: 
             - name: Commit files
               run: |
