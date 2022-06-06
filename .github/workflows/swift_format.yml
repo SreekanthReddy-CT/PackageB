@@ -26,12 +26,10 @@ jobs:
             # There are changes. Stage the file, commit and push
             git add .
             git commit -m "Swift Formatted"
-            
             - name: Push changes
               uses: ad-m/github-push-action@master
               with:
                 branch: ${{ github.ref }}
-            
           else
             echo "no changes";
           fi      
