@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-                            let package = Package(
+let package = Package(
     name: "PackageB",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
@@ -13,7 +13,7 @@ import PackageDescription
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-         .package(url: "https://github.com/YMLSreekanth/PackageA.git", from: "0.0.1")
+        .package(url: "https://github.com/YMLSreekanth/PackageA.git", from: "0.0.1"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -21,11 +21,10 @@ import PackageDescription
         .target(
             name: "PackageB",
             dependencies: [
-                .product(name: "PackageA", package: "PackageA")
+                .product(name: "PackageA", package: "PackageA"),
             ]),
         .testTarget(
             name: "PackageBTests",
             dependencies: ["PackageB"]),
-    ]
-)
+    ])
 
