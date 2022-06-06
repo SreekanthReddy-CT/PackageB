@@ -12,6 +12,12 @@ jobs:
         with:
           repository: 'yml-org/mayo-design-system-ios'
           token: ${{ secrets.API_TOKEN_GITHUB }}
+          
+      - name: Install Swift Format
+        run: brew install swiftformat
+        
+      - name: Run Swift Format
+        run: swiftformat .
   
       - name: Push changes
         run: |
