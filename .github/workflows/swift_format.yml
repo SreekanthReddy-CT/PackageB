@@ -13,6 +13,8 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          ref: 'CICD_swift_format'
           
       - name: Install Swift Format
         run: brew install swiftformat
