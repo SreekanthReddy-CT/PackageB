@@ -13,8 +13,6 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.ref }}
           
       - name: Install Swift Format
         run: brew install swiftformat
@@ -22,13 +20,20 @@ jobs:
       - name: Run Swift Format
         run: swiftformat .
   
-      - name: Push changes
+      - name: Identify file changes
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             # There are changes. Stage the file, commit and push
             git add .
             git commit -m "Swift Formatted"
-            git push      
+            git push
+            
+            - name: Push changes
+              uses: ad-m/github-push-action@master
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                branch: ${{ github.ref }}
+            
           else
             echo "no changes";
           fi      
