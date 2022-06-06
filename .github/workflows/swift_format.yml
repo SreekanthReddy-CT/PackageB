@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: ${GITHUB_REF##*/}
+          ref: ${{ github.ref }}
           
       - name: Install Swift Format
         run: brew install swiftformat
