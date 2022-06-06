@@ -1,6 +1,10 @@
 name: On PR For Feature & Bugfix
 
-on: push
+on:
+  pull_request:
+    types: [opened, edited]
+    branches: 
+      - main
 
 jobs:
   build:
