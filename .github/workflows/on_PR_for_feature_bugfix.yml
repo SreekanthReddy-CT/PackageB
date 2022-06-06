@@ -2,7 +2,7 @@ name: On PR For Feature & Bugfix
 
 on:
   pull_request:
-    types: [opened, edited]
+    types: [synchronize]
     branches: 
       - main
 
