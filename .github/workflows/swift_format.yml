@@ -9,9 +9,6 @@ jobs:
     
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          repository: 'yml-org/mayo-design-system-ios'
-          token: ${{ secrets.API_TOKEN_GITHUB }}
           
       - name: Install Swift Format
         run: brew install swiftformat
