@@ -3,7 +3,7 @@
 
 import PackageDescription
 
-                    let package = Package(
+let package = Package(
     name: "PackageB",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
