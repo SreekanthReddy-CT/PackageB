@@ -32,7 +32,7 @@ jobs:
         run: |
           echo -e "machine github.com\nlogin ${{ secrets.GIT_USER }}\npassword ${{ secrets.API_TOKEN_GITHUB }}" > ~/.netrc
           chmod 600 ~/.netrc
-          xcodebuild -scheme DesignSystem test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.5'
+          xcodebuild -scheme PackageB test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.5'
           
       - name: Install Xcov
         shell: bash
