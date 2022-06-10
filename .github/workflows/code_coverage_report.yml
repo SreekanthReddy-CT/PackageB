@@ -1,0 +1,66 @@
+name: Publish Code Coverage Report
+
+on: 
+    push:
+        branches:
+        - main
+    
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+  
+      - name: Set Xcode version
+        run: |
+          ls -l /Applications | grep 'Xcode'
+          sudo xcode-select -s /Applications/Xcode_13.4.app
+          
+      # Delete Derived Data folder to clear the existing .xcresult file.
+      # .xcresult contains test code coverage report.
+      # This file is removed to prevent from fetching cached data while generating the code coverage report.
+      - name: Delete Derived Data
+        run: rm -rf ~/Library/Developer/Xcode/DerivedData/
+    
+      - name: Delete existing code coverage report
+        run: |
+          rm -rf tcr_output
+          
+      - name: Run Unit Tests
+        run: |
+          echo -e "machine github.com\nlogin ${{ secrets.GIT_USER }}\npassword ${{ secrets.API_TOKEN_GITHUB }}" > ~/.netrc
+          chmod 600 ~/.netrc
+          xcodebuild -scheme DesignSystem test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.5'
+          
+      - name: Install Xcov
+        shell: bash
+        run: |
+          echo -e "machine github.com\nlogin ${{ secrets.GIT_USER }}\npassword ${{ secrets.API_TOKEN_GITHUB }}" > ~/.netrc
+          chmod 600 ~/.netrc
+          sudo gem install xcov
+          
+      - name: Generate Code Coverage Report
+        run: |
+         xcov --is_swift_package -s PackageB -j ~/Library/Developer/Xcode/DerivedData/PackageB* -o reports
+         
+      - name: Upload artifacts to GitHub workflow storage
+        uses: actions/upload-artifact@v3
+        with:
+          name: cc_test_reports
+          path: reports/
+          retention-days: 3
+          
+      - name: Publish test coverage report
+        run: |
+            mkdir -p docs
+            cp -R reports docs/reports
+            
+      - name: Commit coverage and code formatting changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: Commit test coverage
+          
+        
+
