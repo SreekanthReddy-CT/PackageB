@@ -1,0 +1,30 @@
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: [on_token_update]
+    
+jobs:
+  myEvent:
+    runs-on: macos-12
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Update Package.swift
+        shell: bash
+        run: |
+          python3 token_version_up  date.py ${{ github.event.client_payload.tag }}
+          
+      - name: Update Design Token swift package
+        run: |
+          echo -e "machine github.com\nlogin ${{ secrets.GIT_USER }}\npassword ${{ secrets.API_TOKEN_GITHUB }}" > ~/.netrc
+          chmod 600 ~/.netrc
+          swift package update
+      
+      - name: Commit
+        run: |
+            # Stage the file, commit and push
+            git add .
+            git commit -m "Auto commit"
+            git push
