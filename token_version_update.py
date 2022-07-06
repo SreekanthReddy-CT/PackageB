@@ -2,7 +2,7 @@ import re
 import sys
 
 kExactString = "exact"
-kSearchURL = "https://github.com/yml-org/mayo-design-tokens-ios.git"
+kSearchURL = "https://github.com/YMLSreekanth/PackageA.git"
 kFilename = "Package.swift"
 
 def inplaceChange(filename, oldString, newString):
