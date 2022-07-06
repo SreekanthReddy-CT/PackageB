@@ -14,7 +14,7 @@ jobs:
       - name: Update Package.swift
         shell: bash
         run: |
-          python3 token_version_up  date.py ${{ github.event.client_payload.tag }}
+          python3 token_version_update.py ${{ github.event.client_payload.tag }}
           
       - name: Update Design Token swift package
         run: |
